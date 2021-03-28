@@ -1,16 +1,17 @@
 var container = document.getElementById("matrix-container");
 
-const greenColor = "#1A1";
+const greenColor = "#292";
 const startingPointColor = "#CFC";
 const height = 60; // row size
-const width = 40; // column size
-const randomiseSpeed = 40; // how much char replaced at a time
-const startPointStreamSpeedMin = 20; // rain min speed
-const startPointStreamSpeedMax = 190; // rain max speed
+const width = 50; // column size
+const randomiseSpeed = 80; // how much char replaced at a time
+const startPointStreamSpeedMin = 0.1; // rain min speed
+const startPointStreamSpeedMax = 80; // rain max speed
 const tailColors = ["#9D9", "#7C7", "#5A5", "#3A3","#1A1"]; 
 let letterArray = []; // [{color:"", "letter"}]
 let startPoint = []; // head of each line(tail)
 let startPointSpeeds = []; // head changing speed
+let blackAreaSizes = [];
 
 
 // at start, fill all the letters with green color and random unicode char (will be invoke once)
@@ -32,21 +33,17 @@ setInterval(() => {
     randomizeLetters();
     renderLineArray();
     shiftStartingPointLetter();
-}, 10);
+}, 100);
 
-setInterval(() => {
-    startPointSpeeds = [];
-    for(let i=0; i<width; i++){
-        startPointSpeeds.push(Math.random() * (startPointStreamSpeedMax - startPointStreamSpeedMin) + startPointStreamSpeedMin);
-    }
-}, 50);
 
 createStreamStartPoint();
+createBlackAreaSizes();
 
 function shiftStartingPointLetter(){
     for(let i=0; i<startPoint.length; i++){
         startPoint[i] += ((startPoint[i] + startPointSpeeds[i]) / 100) % height;
-        for(let j=i; j<i+5; j++){
+        
+        for(let j=0; j<blackAreaSizes[i]; j++){
             letterArray[(i) % width][Math.ceil(startPoint[i]+j) % height].color = "#111";
         }
         letterArray[i][Math.ceil(startPoint[i]) % height].color = startingPointColor;
@@ -58,6 +55,13 @@ function shiftStartingPointLetter(){
         }catch(e){}
 
         startPoint[i] = startPoint[i] % height;
+    }
+}
+
+function createBlackAreaSizes(){
+    blackAreaSizes = [];
+    for(let i=0; i<height; i++){
+        blackAreaSizes.push(Math.ceil(Math.random() * height/3*2));
     }
 }
 
