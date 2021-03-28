@@ -8,6 +8,9 @@ It is just for fun.
 
 Download the repository and run index.html
 
+## GitHub Page ##
+
+https://halid-senyigit.github.io/matrix-effect-js/
 
 
 ##### Licence
