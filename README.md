@@ -1,4 +1,4 @@
-## Code Rain Effect From Matrix Movie
+## Code raining effect from matrix movie scenes.
 
 ![1](capture.png)
 
