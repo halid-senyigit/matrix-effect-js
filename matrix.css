@@ -1,0 +1,22 @@
+#matrix-container{
+    background-color: #111;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-gap: 10px;
+    overflow: hidden;
+}
+
+#matrix-container > .matrix-line{
+    grid-row-start: 1;
+    height: 100%;
+    display: grid;
+}
+
+#matrix-container > .matrix-line > .letter{
+    font-size: 100%;
+    font-weight: bold;
+    font-size: 24px;
+    text-align: center;
+}
