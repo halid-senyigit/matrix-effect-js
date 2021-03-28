@@ -2,11 +2,11 @@ var container = document.getElementById("matrix-container");
 
 const greenColor = "#1A1";
 const startingPointColor = "#CFC";
-const height = 40; // row size
-const width = 50; // column size
-const randomiseSpeed = 30; // how much char replaced at a time
+const height = 60; // row size
+const width = 40; // column size
+const randomiseSpeed = 40; // how much char replaced at a time
 const startPointStreamSpeedMin = 20; // rain min speed
-const startPointStreamSpeedMax = 60; // rain max speed
+const startPointStreamSpeedMax = 190; // rain max speed
 const tailColors = ["#9D9", "#7C7", "#5A5", "#3A3","#1A1"]; 
 let letterArray = []; // [{color:"", "letter"}]
 let startPoint = []; // head of each line(tail)
@@ -32,8 +32,14 @@ setInterval(() => {
     randomizeLetters();
     renderLineArray();
     shiftStartingPointLetter();
-}, 5);
+}, 10);
 
+setInterval(() => {
+    startPointSpeeds = [];
+    for(let i=0; i<width; i++){
+        startPointSpeeds.push(Math.random() * (startPointStreamSpeedMax - startPointStreamSpeedMin) + startPointStreamSpeedMin);
+    }
+}, 50);
 
 createStreamStartPoint();
 
